@@ -1,0 +1,54 @@
+{
+    "planets": [
+        {
+            "id": 1,
+            "name": "Tatooine",
+            "image": "https://static.wikia.nocookie.net/esstarwars/images/1/1d/Tatooine_TPM.png/revision/latest?cb=20211109152313"
+        },
+        {
+            "id": 2,
+            "name": "Alderaan",
+            "image": "https://static.wikia.nocookie.net/esstarwars/images/4/4a/Alderaan.jpg/revision/latest?cb=20100723184830"
+        },
+        {
+            "id": 3,
+            "name": "Hoth",
+            "image": "https://static.wikia.nocookie.net/esstarwars/images/9/95/Hoth_SWCT.png/revision/latest?cb=20160908190041"
+        },
+        {
+            "id": 4,
+            "name": "Dagobah",
+            "image": "https://static.wikia.nocookie.net/esstarwars/images/2/2d/Dagobah_ep3.jpg/revision/latest?cb=20100511164212"
+        },
+        {
+            "id": 5,
+            "name": "Endor",
+            "image": "https://static.wikia.nocookie.net/esstarwars/images/e/e3/Endor_Forest_Moon.png/revision/latest?cb=20200408172004"
+        },
+        {
+            "id": 6,
+            "name": "Naboo",
+            "image": "https://static.wikia.nocookie.net/esstarwars/images/b/b5/Naboo_planet.png/revision/latest?cb=20150627135356"
+        },
+        {
+            "id": 7,
+            "name": "Coruscant",
+            "image": "https://static.wikia.nocookie.net/esstarwars/images/4/4d/Coruscant-globe.png/revision/latest?cb=20150627135030"
+        },
+        {
+            "id": 8,
+            "name": "Kamino",
+            "image": "https://static.wikia.nocookie.net/esstarwars/images/d/d2/Kamino_TPM.png/revision/latest?cb=20210723175945"
+        },
+        {
+            "id": 9,
+            "name": "Mustafar",
+            "image": "https://static.wikia.nocookie.net/esstarwars/images/8/8e/Mustafar_HS.png/revision/latest?cb=20160818155622"
+        },
+        {
+            "id": 10,
+            "name": "Geonosis",
+            "image": "https://static.wikia.nocookie.net/esstarwars/images/f/f6/Geonosis_TPM.png/revision/latest?cb=20200705192337"
+        }
+    ]
+}
