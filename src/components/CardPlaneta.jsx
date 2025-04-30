@@ -22,7 +22,12 @@ export const CardPlaneta = ({ id, nombre }) => {
     return (
         <div>
             <div className="card" style={{ width: "18rem" }}>
-                <img src={planetImage} className="card-img-top" alt={nombre} style={{ height: "22rem" }} />
+                <img
+                    src={planetImage}
+                    className="card-img-top"
+                    alt={nombre}
+                    style={{ height: "22rem", objectFit: "cover" }}
+                />
                 <div className="card-body">
                     <h5 className="card-title">{nombre}</h5>
                     {details ? (
@@ -35,8 +40,7 @@ export const CardPlaneta = ({ id, nombre }) => {
                     ) : (
                         <p className="card-text">Cargando datos del planeta...</p>
                     )}
-                <Link to = "/detailPlanet"><button>More</button></Link>
-
+                    <Link to={`/detailPlanet/${id}`}><button>More</button></Link>
                 </div>
             </div>
         </div>

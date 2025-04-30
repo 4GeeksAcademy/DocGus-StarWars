@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react"
-import peopleData from "../assets/img/people.json"
 import { Link } from "react-router-dom"
+import peopleData from "../assets/img/people.json" // Ya no necesitas el fetch, porque lo importas directamente
 
 export const CardPersonaje = ({ id, nombre }) => {
-    const peopleImage = peopleData.people.find(p => p.id === Number(id))?.image
+    const [peopleImage, setPeopleImage] = useState(null)
     const [details, setDetails] = useState(null)
 
+    // Obtener imagen desde el JSON importado
+    useEffect(() => {
+        const img = peopleData.people.find(p => p.id === Number(id))?.image
+        setPeopleImage(img)
+    }, [id])
+
+    // Obtener detalles del personaje desde la API
     useEffect(() => {
         const fetchDetails = async () => {
             try {
@@ -22,7 +29,12 @@ export const CardPersonaje = ({ id, nombre }) => {
     return (
         <div>
             <div className="card" style={{ width: "18rem" }}>
-                <img src={peopleImage} className="card-img-top" alt={nombre} style={{ height: "22rem" }} />
+                <img
+                    src={peopleImage}
+                    className="card-img-top"
+                    alt={nombre}
+                    style={{ height: "22rem", objectFit: "cover" }}
+                />
                 <div className="card-body">
                     <h5 className="card-title">{nombre}</h5>
                     {details ? (
@@ -32,9 +44,9 @@ export const CardPersonaje = ({ id, nombre }) => {
                             <li><strong>Gender:</strong> {details.gender}</li>
                         </ul>
                     ) : (
-                        <p className="card-text">Loading details...</p>
+                        <p className="card-text">Cargando datos del personaje...</p>
                     )}
- <Link to = "/detailPerson"><button>More</button></Link>
+                    <Link to={`/detalle/${id}`}><button>More</button></Link>
                 </div>
             </div>
         </div>
