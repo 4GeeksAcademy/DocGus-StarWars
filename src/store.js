@@ -16,7 +16,8 @@ export const initialStore = () => {
         title: "Do my homework",
         background: null,
       }
-    ]
+    ],
+    favoritos: []
   }
 }
 
@@ -51,7 +52,18 @@ export default function storeReducer(store, action = {}) {
     ...store,
     detalle_planeta: action.payload,
   };
-
+  case "agregar_favorito":
+    return {
+      ...store,
+      favoritos: [...store.favoritos, action.payload]
+    };
+  
+  case "eliminar_favorito":
+    return {
+      ...store,
+      favoritos: store.favoritos.filter(nombre => nombre !== action.payload)
+    };
+    
     default:
       throw Error('Unknown action.');
   }

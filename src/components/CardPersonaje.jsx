@@ -1,18 +1,36 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import peopleData from "../assets/img/people.json" // Ya no necesitas el fetch, porque lo importas directamente
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import useGlobalReducer from "../hooks/useGlobalReducer.jsx"; // Hook personalizado
+import peopleData from "../assets/img/people.json"; // Asegúrate que este archivo tenga personajes
+
+
 
 export const CardPersonaje = ({ id, nombre }) => {
+    const { store, dispatch } = useGlobalReducer(); 
     const [peopleImage, setPeopleImage] = useState(null)
     const [details, setDetails] = useState(null)
 
-    // Obtener imagen desde el JSON importado
+    const agregarFavorito = () => {
+        dispatch({
+            type: "agregar_favorito",
+            payload: nombre
+        })
+    }
+
+    const eliminarFavorito = () => {
+        dispatch({
+            type: "eliminar_favorito",
+            payload: nombre
+        })
+    }
+
+    const esFavorito = store.favoritos.includes(nombre)
+
     useEffect(() => {
         const img = peopleData.people.find(p => p.id === Number(id))?.image
         setPeopleImage(img)
     }, [id])
 
-    // Obtener detalles del personaje desde la API
     useEffect(() => {
         const fetchDetails = async () => {
             try {
@@ -25,7 +43,13 @@ export const CardPersonaje = ({ id, nombre }) => {
         }
         fetchDetails()
     }, [id])
-
+    useEffect(() => {
+        if (peopleData && peopleData.people) {
+            const img = peopleData.people.find(p => p.id === Number(id))?.image;
+            setPeopleImage(img || "ruta_a_imagen_por_defecto.jpg"); // Usa una imagen por defecto si no se encuentra la imagen
+        }
+    }, [id, peopleData]);
+    
     return (
         <div>
             <div className="card" style={{ width: "18rem" }}>
@@ -46,6 +70,11 @@ export const CardPersonaje = ({ id, nombre }) => {
                     ) : (
                         <p className="card-text">Cargando datos del personaje...</p>
                     )}
+
+                    <button onClick={esFavorito ? eliminarFavorito : agregarFavorito}>
+                        {esFavorito ? "💔 Quitar de Favoritos" : "❤️ Agregar a Favoritos"}
+                    </button>
+
                     <Link to={`/detalle/${id}`}><button>More</button></Link>
                 </div>
             </div>
